@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MiniTok — Demo fullstack</title>
+  <meta name="description" content="Demo minimalista con backend Node/Express y base simulada.">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <a href="#" class="logo" aria-label="MiniTok inicio">
+        <svg viewBox="0 0 48 48" width="36" height="36" aria-hidden="true">
+          <defs>
+            <linearGradient id="g" x1="0" x2="1">
+              <stop offset="0" stop-color="#00f0ff"></stop>
+              <stop offset="1" stop-color="#ff3ec6"></stop>
+            </linearGradient>
+          </defs>
+          <circle cx="24" cy="24" r="22" fill="none" stroke="url(#g)" stroke-width="3"></circle>
+          <path d="M30 18c-3 0-6 1-9 4v10" fill="none" stroke="url(#g)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+        <span class="brand">MiniTok</span>
+      </a>
+
+      <nav class="main-nav" role="navigation" aria-label="Navegación principal">
+        <ul>
+          <li><a href="#" class="nav-link">Explorar</a></li>
+          <li><a href="#" class="nav-link">Tendencias</a></li>
+          <li><a href="#" class="nav-link">Perfil</a></li>
+        </ul>
+      </nav>
+
+      <div class="search-wrap" role="search" aria-label="Buscar">
+        <label for="search" class="visually-hidden">Buscar</label>
+        <input id="search" class="search-input" type="search" placeholder="Buscar" aria-label="Buscar contenido">
+      </div>
+
+      <div class="actions">
+        <!-- Botón abre el formulario de crear nuevo (toggle) -->
+        <button id="uploadBtn" class="btn" aria-expanded="false" aria-controls="uploadForm">Subir</button>
+        <button id="menuToggle" class="btn icon-btn" aria-expanded="false" aria-controls="mobileMenu" aria-label="Abrir menú">
+          <span class="hamburger" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobileMenu" class="mobile-menu" hidden>
+      <ul>
+        <li><a href="#">Explorar</a></li>
+        <li><a href="#">Tendencias</a></li>
+        <li><a href="#">Perfil</a></li>
+        <li><a href="#">Ajustes</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main id="main" class="site-main" role="main">
+    <section class="hero">
+      <p class="hero-copy">Descubre contenido en un feed sencillo y rápido — diseño móvil-first.</p>
+    </section>
+
+    <!-- Formulario para registrar nuevo artículo (toggle) -->
+    <section id="uploadSection" class="upload-section" hidden>
+      <form id="uploadForm" class="upload-form" novalidate>
+        <h2>Crear nuevo artículo</h2>
+
+        <label>
+          Título
+          <input name="title" required minlength="2" placeholder="Título del artículo" />
+        </label>
+
+        <label>
+          Descripción
+          <textarea name="description" rows="2" placeholder="Descripción breve (opcional)"></textarea>
+        </label>
+
+        <label>
+          Autor
+          <input name="author" placeholder="Autor (opcional)" />
+        </label>
+
+        <label>
+          Reproducciones (número)
+          <input name="views" type="number" min="0" placeholder="0" />
+        </label>
+
+        <div class="form-actions">
+          <button type="submit" class="btn">Crear</button>
+          <button type="button" id="cancelUpload" class="btn btn-ghost">Cancelar</button>
+        </div>
+
+        <div id="uploadMsg" aria-live="polite" class="upload-msg" hidden></div>
+      </form>
+    </section>
+
+    <!-- Feed: los artículos se renderizan dinámicamente -->
+    <section id="feed" class="feed" aria-live="polite">
+      <!-- Loader/placeholder mientras se carga -->
+      <div id="loading" class="no-results">Cargando contenido…</div>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+      <nav aria-label="Enlaces de pie de página" class="footer-nav">
+        <a href="#">Sobre</a>
+        <a href="#">Ayuda</a>
+        <a href="#">Privacidad</a>
+        <a href="#">Condiciones</a>
+      </nav>
+      <div class="copyright">© <span id="year"></span> MiniTok — Demo</div>
+    </div>
+  </footer>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
